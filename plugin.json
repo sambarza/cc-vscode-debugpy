@@ -1,10 +1,10 @@
 {
-    "name": "My plugin",
+    "name": "Vcc-Vscode-Debugpy",
     "version": "0.0.1",
-    "description": "Description of my_plugin.",
-    "author_name": "Me",
+    "description": "Visual Studio Code debug server for Cheshire Cat",
+    "author_name": "sambarza@gmail.com",
     "author_url": "https://mywebsite.me",
-    "plugin_url": "https://github.com/my_name/my_plugin",
-    "tags": "cat, template, example",
-    "thumb": "https://raw.githubusercontent.com/my_repo_path/my_plugin.png"
+    "plugin_url": "https://github.com/my_name/vcc-vscode-debugpy",
+    "tags": "cat, debugger, vscode",
+    "thumb": "https://raw.githubusercontent.com/my_repo_path/vcc-vscode-debugpy.png"
 }
