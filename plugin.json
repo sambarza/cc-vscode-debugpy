@@ -1,5 +1,5 @@
 {
-    "name": "Vcc-Vscode-Debugpy",
+    "name": "Debug Server for VSCode",
     "version": "0.0.1",
     "description": "Visual Studio Code debug server for Cheshire Cat",
     "author_name": "sambarza@gmail.com",

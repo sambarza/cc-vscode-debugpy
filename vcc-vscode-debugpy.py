@@ -27,6 +27,7 @@ def before_cat_bootstrap(cat):
     if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"] == "YES":
         try:
             start_listening()
+            wait_for_client()
         except Exception as e:
             # Investigate how to use the Cat logging system
             print(f"{e}")
@@ -49,6 +50,13 @@ def start_listening():
 
     print(f"Listening for debug sessions on port {LISTENING_PORT}")
     debugpy.listen(("0.0.0.0", LISTENING_PORT))
+
+
+def wait_for_client():
+    """Wait for a client connection, this blocking"""
+
+    print(f"Waiting for debug sessions on port {LISTENING_PORT}")
+    debugpy.wait_for_client()
 
 
 def load_settings():
