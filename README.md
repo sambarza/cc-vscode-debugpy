@@ -4,7 +4,7 @@
 Would you like to debug your Cheshire Cat plugin running in a Docker container with VSCode? This plugin can assist you!
 
 ## How to use
-Install this plugin, rebuild the container, restart and try to ask the Cat to help you on debugging you plugin...
+Install this plugin, rebuild the container, restart and try to ask the Cat to help you on debugging your plugin...
 
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/aa65ceff-db53-4eb8-a8a2-f940d80b27a9)
 
