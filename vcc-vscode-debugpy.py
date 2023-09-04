@@ -11,8 +11,7 @@ LISTENING_PORT = 5678
 
 
 class MySettings(BaseModel):
-    # Should be `bool` not `str`, waiting for the fix ;-)
-    listen_on_bootstrap: str = "NO"
+    listen_on_bootstrap: bool = False
 
 
 @hook
@@ -24,7 +23,7 @@ def plugin_settings_schema():
 def before_cat_bootstrap(cat):
     settings = load_settings()
 
-    if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"] == "YES":
+    if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"]:
         try:
             start_listening()
             wait_for_client()
