@@ -51,6 +51,6 @@ Using this plugin to debug this plugin ;-)
 If you need to debug something during the Cat boostrap process, activate the `Listen on bootstrap` setting, then stop and start the Cat, the bootstrap process will be blocked waiting for a debug connection:
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/c6dc1787-9375-46f9-bf87-2eb122a96df5)
 
-During startup, there is a message in the console log signaling the waiting connection:
+When starting up, there is a message in the console log that indicates the waiting connection:
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/9c777be7-f114-4947-911d-26ac55e38dec)
 
