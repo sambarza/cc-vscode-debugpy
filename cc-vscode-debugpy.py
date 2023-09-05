@@ -1,18 +1,20 @@
 from cat.mad_hatter.decorators import tool, hook
 
-import os
-import json
+from cat.log import log
 from pydantic import BaseModel
+
 
 import debugpy
 
 # This is the fixed port exposed in docker-compose.yml
 LISTENING_PORT = 5678
 
+# Plugin name, used to load settings
+PLUGIN_NAME = "cc-vscode-debugpy"
+
 
 class MySettings(BaseModel):
-    # Should be `bool` not `str`, waiting for the fix ;-)
-    listen_on_bootstrap: str = "NO"
+    listen_on_bootstrap: bool = False
 
 
 @hook
@@ -22,9 +24,9 @@ def plugin_settings_schema():
 
 @hook
 def before_cat_bootstrap(cat):
-    settings = load_settings()
+    settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
 
-    if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"] == "YES":
+    if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"]:
         try:
             start_listening()
             wait_for_client()
@@ -53,33 +55,10 @@ def start_listening():
 
 
 def wait_for_client():
-    """Wait for a client connection, this blocking"""
+    """Wait for a client connection, this is blocking"""
 
-    print(f"Waiting for debug sessions on port {LISTENING_PORT}")
+    log(
+        f"Waiting for debug sessions on port {LISTENING_PORT}, attach with VSCode to continue startup",
+        "WARNING",
+    )
     debugpy.wait_for_client()
-
-
-def load_settings():
-    """This is copy and paste of the core method `Plugin.load_settings()`
-    Investigate how to reuse the core method...
-    """
-
-    path = "cat/plugins/cc-vscode-debugpy/"
-
-    # by default, plugin settings are saved inside the plugin folder
-    #   in a JSON file called settings.json
-    settings_file_path = os.path.join(path, "settings.json")
-
-    # default settings is an empty dictionary
-    settings = {}
-
-    # load settings.json if exists
-    if os.path.isfile(settings_file_path):
-        try:
-            with open(settings_file_path, "r") as json_file:
-                settings = json.load(json_file)
-        except Exception as e:
-            print(f"Unable to load plugin cc-vscode-debugpy settings", "ERROR")
-            print(e, "ERROR")
-
-    return settings
