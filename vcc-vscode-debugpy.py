@@ -3,6 +3,7 @@ from cat.mad_hatter.decorators import tool, hook
 import os
 import json
 from pydantic import BaseModel
+from cat.log import log
 
 import debugpy
 
@@ -54,7 +55,10 @@ def start_listening():
 def wait_for_client():
     """Wait for a client connection, this blocking"""
 
-    print(f"Waiting for debug sessions on port {LISTENING_PORT}")
+    log(
+        f"Waiting for debug sessions on port {LISTENING_PORT}, attach with VSCode to continue startup",
+        "WARNING",
+    )
     debugpy.wait_for_client()
 
 
