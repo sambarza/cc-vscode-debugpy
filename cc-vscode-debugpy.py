@@ -1,4 +1,4 @@
-from cat.mad_hatter.decorators import tool, hook
+from cat.mad_hatter.decorators import tool, hook, plugin
 
 from cat.log import log
 from pydantic import BaseModel
@@ -17,8 +17,8 @@ class MySettings(BaseModel):
     listen_on_bootstrap: bool = False
 
 
-@hook
-def plugin_settings_schema():
+@plugin
+def settings_schema():
     return MySettings.schema()
 
 
