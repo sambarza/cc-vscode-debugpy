@@ -10,7 +10,7 @@ import debugpy
 LISTENING_PORT = 5678
 
 # Plugin name, used to load settings
-PLUGIN_NAME = "cc-vscode-debugpy"
+PLUGIN_NAME = "cc_vscode_debugpy"
 
 
 class MySettings(BaseModel):
@@ -24,11 +24,7 @@ def settings_schema():
 
 @hook
 def before_cat_bootstrap(cat):
-    try:
-        settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
-    except KeyError as e:
-        # The plugin has no settings defined yet
-        return
+    settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
 
     if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"]:
         try:
