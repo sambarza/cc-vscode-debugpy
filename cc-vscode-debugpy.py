@@ -24,7 +24,11 @@ def settings_schema():
 
 @hook
 def before_cat_bootstrap(cat):
-    settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
+    try:
+        settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
+    except KeyError as e:
+        # The plugin has no settings defined yet
+        return
 
     if "listen_on_bootstrap" in settings and settings["listen_on_bootstrap"]:
         try:
@@ -44,7 +48,7 @@ def activate_the_debugger(tool_input, cat):
     except Exception as e:
         return f"{e}"
 
-    return f"I'm ready, you can connect with VSCode on port {LISTENING_PORT}"
+    return f"I'm ready, you can connect with VSCode on port {LISTENING_PORT}, remember to open the port in docker-compose.yml"
 
 
 def start_listening():
