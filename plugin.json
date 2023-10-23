@@ -1,10 +1,10 @@
 {
     "name": "Debug Server for VSCode",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Visual Studio Code debug server for Cheshire Cat",
     "author_name": "sambarza@gmail.com",
-    "author_url": "https://mywebsite.me",
-    "plugin_url": "https://github.com/my_name/vcc-vscode-debugpy",
+    "author_url": "https://github.com/sambarza",
+    "plugin_url": "https://github.com/sambarza/cc-vscode-debugpy",
     "tags": "cat, debugger, vscode",
     "thumb": "https://raw.githubusercontent.com/my_repo_path/vcc-vscode-debugpy.png"
 }
