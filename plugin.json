@@ -1,6 +1,6 @@
 {
     "name": "Debug Server for VSCode",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Visual Studio Code debug server for Cheshire Cat",
     "author_name": "sambarza@gmail.com",
     "author_url": "https://github.com/sambarza",
