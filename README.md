@@ -16,7 +16,8 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/8c8c12e9-3cff-477a-860d-2b0fc943163e)
 
-6. Add the following configuration inside the `launch.json` VSCode file:
+6. Open the root Cat folder with VSCode, the root folder is the folder that contains the `core` folder
+7. Add the following configuration inside the `launch.json` VSCode file:
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
