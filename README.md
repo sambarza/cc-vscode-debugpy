@@ -48,7 +48,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 }
 ```
 7. If you run the Cat with `docker run` use following `launch.json` VSCode configuration file:
-```
+```json
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
