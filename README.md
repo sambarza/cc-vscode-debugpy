@@ -17,7 +17,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/8c8c12e9-3cff-477a-860d-2b0fc943163e)
 
 6. Open the root Cat folder with VSCode, the root folder is the folder that contains the `core` folder
-7. Add the following configuration inside the `launch.json` VSCode file:
+7. If run the Cat with `docker compose` use following `launch.json` VSCode configuration file:
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -44,7 +44,34 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
     ]
 }
 ```
-7. Start the debug in VSCode using the new `Python: Remote Attach to Cat` configuration
+7. If you run the Cat with `docker run` use following `launch.json` VSCode configuration file:
+```
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Remote Attach to Cat",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/",
+                    "remoteRoot": "/app/cat"
+                }
+            ],
+            "justMyCode": true
+        }
+    ]
+}
+```
+8. Start the debug in VSCode using the new `Python: Remote Attach to Cat` configuration
 
 ## What I can do?
 All the VSCode debugging feature are available:
