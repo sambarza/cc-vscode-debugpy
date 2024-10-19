@@ -1,3 +1,5 @@
+import socket
+
 from cat.mad_hatter.decorators import tool, hook, plugin
 
 from cat.log import log
@@ -36,13 +38,20 @@ def before_cat_bootstrap(cat):
     if listen_on_bootstrap(settings) or debug_bootstrap(settings):
         try:
             start_listening()
+            if not is_debug_port_exposed():
+                log.warning(f"The port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. You need to expose it")
+
         except Exception as e:
             # Investigate how to use the Cat logging system
             print(f"{e}")
 
     if debug_bootstrap(settings):
         try:
-            wait_for_client()
+            if not is_debug_port_exposed():
+                log.warning(f"The port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. Startup has not stopped")
+            else:
+                wait_for_client()
+
         except Exception as e:
             # Investigate how to use the Cat logging system
             print(f"{e}")
@@ -65,7 +74,10 @@ def activate_the_debugger(tool_input, cat):
     except Exception as e:
         return f"{e}"
 
-    return f"I'm ready, you can connect with VSCode on port {LISTENING_PORT}, remember to open the port in docker-compose.yml"
+    if not is_debug_port_exposed():
+        return f"I'm ready, however the port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. You need to expose it"
+
+    return f"I'm ready, you can connect with VSCode on port {LISTENING_PORT}"
 
 
 def start_listening():
@@ -93,3 +105,20 @@ def activate_breakpoint(tool_input, cat):
     debugpy.breakpoint()
 
     return f"Ok breakpoint set"
+
+def is_debug_port_exposed():
+
+    return is_port_open(f"host.docker.internal", LISTENING_PORT)
+
+def is_port_open(host, port, timeout=3):
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(timeout)
+
+    try:
+        result = sock.connect_ex((host, port))
+        return result == 0
+    except socket.error as e:
+        return 8
+    finally:
+        sock.close()
