@@ -77,6 +77,14 @@ def activate_the_debugger(tool_input, cat):
 
     return f"I'm ready, you can connect with VSCode on port {LISTENING_PORT}"
 
+@tool(return_direct=True)
+def tool_is_debug_port_exposed(tool_input, cat):
+    """Replies to "is the debug port exposed?"""
+
+    if not is_debug_port_exposed():
+        return f"The debug port {LISTENING_PORT} seems to be exposed"
+    else:
+        return f"The debug port {LISTENING_PORT} doesn't seem to be exposed"
 
 def start_listening():
     """Start listening for incoming debug sessions from vscode"""
