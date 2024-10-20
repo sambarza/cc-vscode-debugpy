@@ -5,17 +5,17 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 
 ## How to use
 1. Install the plugin `Debug Server for VSCode` from the Plugins registry ([Tab Plugins](http://localhost:1865/admin/plugins))
-1. If using a Cat version earlier than 1.7, expose port 5678 by adding the following line to the `compose.yml` file. Newer Cat releases already expose this port (ensure it's closed in production environments):
+2. If using a Cat version earlier than 1.7, expose port 5678 by adding the following line to the `compose.yml` file. Newer Cat releases already expose this port (ensure it's closed in production environments):
 ```yml
     ports:
       - ${CORE_PORT:-1865}:80
       - 5678:5678           < --- add this line
 ```
-1. If you run the Cat using `docker run`, expose the port `5678` by adding `-p 5678:5678` to the `docker run` command:
+3. If you run the Cat using `docker run`, expose the port `5678` by adding `-p 5678:5678` to the `docker run` command:
    
    `docker run --rm -it -v ./data:/app/cat/data -v ./plugins:/app/cat/plugins -p 1865:80 -p 5678:5678 ghcr.io/cheshire-cat-ai/core:latest`
-3. Restart the Cat
-1. Ask the Cat to help you on debugging, the Cat is now waiting for connections from VSCode:
+4. Restart the Cat
+5. Ask the Cat to help you on debugging, the Cat is now waiting for connections from VSCode:
 
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/8c8c12e9-3cff-477a-860d-2b0fc943163e)
 
@@ -47,7 +47,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
     ]
 }
 ```
-7. If you run the Cat with `docker run` use following `launch.json` VSCode configuration file:
+8. If you run the Cat with `docker run` use following `launch.json` VSCode configuration file:
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
@@ -74,7 +74,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
     ]
 }
 ```
-8. Start the debug in VSCode using the new `Python: Remote Attach to Cat` configuration
+9. Start the debug in VSCode using the new `Python: Remote Attach to Cat` configuration
 
 ## What I can do?
 All the VSCode debugging feature are available:
