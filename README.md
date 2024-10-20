@@ -5,13 +5,13 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 
 ## How to use
 1. Install the plugin `Debug Server for VSCode` from the Plugins registry ([Tab Plugins](http://localhost:1865/admin/plugins))
-1. If using a Cat version earlier than 1.7, expose port 5678 by adding the following line to the docker-compose.yml file. Newer Cat releases already expose this port (ensure it's closed in production environments):
+1. If using a Cat version earlier than 1.7, expose port 5678 by adding the following line to the `compose.yml` file. Newer Cat releases already expose this port (ensure it's closed in production environments):
 ```yml
     ports:
       - ${CORE_PORT:-1865}:80
       - 5678:5678           < --- add this line
 ```
-1. If you run the Cat using `docker run`, export the port `5678` by adding `-p 5678:5678` to the`docker run` command:
+1. If you run the Cat using `docker run`, expose the port `5678` by adding `-p 5678:5678` to the `docker run` command:
    
    `docker run --rm -it -v ./data:/app/cat/data -v ./plugins:/app/cat/plugins -p 1865:80 -p 5678:5678 ghcr.io/cheshire-cat-ai/core:latest`
 3. Restart the Cat
