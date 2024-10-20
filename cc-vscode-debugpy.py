@@ -107,15 +107,31 @@ def is_debug_port_exposed():
 
     return is_port_open(f"host.docker.internal", LISTENING_PORT)
 
-def is_port_open(host, port, timeout=3):
+def is_port_open(host, port, timeout=0.250):
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(timeout)
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.settimeout(timeout)
 
     try:
-        result = sock.connect_ex((host, port))
-        return result == 0
+        client_socket.connect((host, port))
+    except ConnectionRefusedError:
+        return False
+
+    try:
+        # Receive the connection messages
+        # If the connection is interrupted before receiving these messages,
+        # the debug server get stuck and stop handling new connections.
+        while client_socket.recv(256):
+            pass
+
+        # should never go here
+
+    except TimeoutError:
+        # It's fine to timeout after receiving connection messages
+        return True
     except socket.error as e:
-        return 8
+        # Other errors? Consider the port closed
+        log.error(e.strerror)
+        return False
     finally:
-        sock.close()
+        client_socket.close()
