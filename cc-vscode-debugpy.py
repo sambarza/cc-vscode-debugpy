@@ -42,8 +42,7 @@ def before_cat_bootstrap(cat):
                 log.warning(f"The port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. You need to expose it")
 
         except Exception as e:
-            # Investigate how to use the Cat logging system
-            print(f"{e}")
+            log.error(f"{e}")
 
     if debug_bootstrap(settings):
         try:
@@ -53,8 +52,7 @@ def before_cat_bootstrap(cat):
                 wait_for_client()
 
         except Exception as e:
-            # Investigate how to use the Cat logging system
-            print(f"{e}")
+            log.error(f"{e}")
 
 
 def listen_on_bootstrap(settings):
@@ -83,8 +81,7 @@ def activate_the_debugger(tool_input, cat):
 def start_listening():
     """Start listening for incoming debug sessions from vscode"""
 
-    print(f"Listening for debug sessions on port {LISTENING_PORT}")
-
+    log.info(f"Listening for debug sessions on port {LISTENING_PORT}")
     debugpy.listen(("0.0.0.0", LISTENING_PORT))
 
 
