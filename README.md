@@ -5,7 +5,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 
 ## How to use
 1. Install the plugin `Debug Server for VSCode` from the Plugins registry ([Tab Plugins](http://localhost:1865/admin/plugins))
-1. If you run the Cat using `docker compose`, expose the port `5678` by adding the following line to the `docker-compose.yml`:
+1. If using a Cat version earlier than 1.7, expose port 5678 by adding the following line to the docker-compose.yml file. Newer Cat releases already expose this port (ensure it's closed in production environments):
 ```yml
     ports:
       - ${CORE_PORT:-1865}:80
@@ -99,5 +99,4 @@ If you need to debug something during the Cat boostrap process, activate the `Li
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/d936f939-8393-4fd7-82da-077086d0c04c)
 
 When starting up, there is a message in the console log that indicates the waiting connection:
-![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/9c777be7-f114-4947-911d-26ac55e38dec)
-
+![alt text](waiting_connection.png)
