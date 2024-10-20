@@ -116,6 +116,10 @@ def is_port_open(host, port, timeout=0.250):
         client_socket.connect((host, port))
     except ConnectionRefusedError:
         return False
+    except socket.gaierror:
+        # Host name not resolved, probably we are not running in Docker
+        # We assume you know what you're doing and hope the port is open
+        return True
 
     try:
         # Receive the connection messages
