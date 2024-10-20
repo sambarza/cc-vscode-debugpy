@@ -39,7 +39,7 @@ def before_cat_bootstrap(cat):
         try:
             start_listening()
             if not is_debug_port_exposed():
-                log.warning(f"The port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. You need to expose it")
+                log.error(f"The port {LISTENING_PORT} doesn't seem to be exposed in the `compose.yml` file. You need to expose it")
 
         except Exception as e:
             log.error(f"{e}")
