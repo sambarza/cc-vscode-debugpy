@@ -1,6 +1,6 @@
 {
     "name": "Debug Server for VSCode",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Visual Studio Code debug server - How to use: https://github.com/sambarza/cc-vscode-debugpy",
     "author_name": "sambarza@gmail.com",
     "author_url": "https://github.com/sambarza",

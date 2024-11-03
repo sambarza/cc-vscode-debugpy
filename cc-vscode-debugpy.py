@@ -11,9 +11,6 @@ import debugpy
 # This is the fixed port exposed in docker-compose.yml
 LISTENING_PORT = 5678
 
-# Plugin name, used to load settings
-PLUGIN_NAME = "cc_vscode_debugpy"
-
 
 class MySettings(BaseModel):
     listen_on_bootstrap: bool = Field(
@@ -33,7 +30,7 @@ def settings_schema():
 
 @hook
 def before_cat_bootstrap(cat):
-    settings = cat.mad_hatter.plugins[PLUGIN_NAME].load_settings()
+    settings = cat.mad_hatter.get_plugin().load_settings()
 
     if listen_on_bootstrap(settings) or debug_bootstrap(settings):
         try:
