@@ -19,7 +19,7 @@ Would you like to debug your Cheshire Cat plugin running in a Docker container w
 
 ![image](https://github.com/sambarza/cc-vscode-debugpy/assets/3630051/8c8c12e9-3cff-477a-860d-2b0fc943163e)
 
-6. In the VSCode debug configuration file `launch.json` put this (see [here] for other configurations (https://github.com/sambarza/cc-vscode-debugpy/edit/main/README.md#other-launchjson-configuration-for-special-cases)):
+6. In the VSCode debug configuration file `launch.json` put this (see [here](https://github.com/sambarza/cc-vscode-debugpy/edit/main/README.md#other-launchjson-configuration-for-special-cases) for other configurations):
 ```json
 {
     // Use IntelliSense to learn about possible attributes.
