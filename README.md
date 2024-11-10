@@ -130,3 +130,7 @@ When starting up, there is a message in the console log that indicates the waiti
     ]
 }
 ```
+
+## Support
+If you need support ping me on [Discord](https://discord.com/channels/1092359754917089350/1092360285056159814) @sambarza
+
